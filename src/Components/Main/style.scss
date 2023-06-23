@@ -1,0 +1,106 @@
+.mainCard {
+
+    max-width: 1200px;
+    min-width: 600px;
+    height: auto;
+    min-height: 60vh;
+    margin:  auto;
+
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+    grid-column-gap: 0;
+    grid-gap: 10px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+.divOpt {
+    background-color: #03045e;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    
+    
+
+    .optFilter {
+        margin: 20px auto;
+        width: auto;
+        height: auto;
+        display: flex;
+    }
+    .optFilter:hover {
+        transform: scale(1.03);
+    }
+    #searchGame{
+        width: 30vw;
+        max-width: 330px;
+        min-width: 200px;
+        height: 40px;
+        padding-left: 15px;
+        border: none;
+    }
+
+    .filterBtn {
+        width: 65px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        border: none;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    .filterBtn:hover{
+        background-color: #023e8a;
+        color: white;
+    }
+    .options {
+        margin-bottom: 15px;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        button {
+            min-width: 30px;
+            padding: 5px;
+            margin: 2px;
+            background-color: transparent;
+            color: white;
+            border-radius: 3px;
+            font-size: 40%;
+            
+            background-image: linear-gradient(45deg, #ffffff 50%, transparent 50%);
+            background-position: 100%;
+            background-size: 400%;
+            -webkit-transition: background 300ms ease-in-out;
+            transition: background 300ms ease-in-out;
+            border: 1px #023e8a solid;
+        }
+        button:hover {
+            border: 1px solid white;
+            cursor: pointer;
+            background-position: 0;
+            color: #023e8a;
+        }
+        .moreFilter {
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    }
+
+    .baseColor{
+        background-color: #023e8a;
+        color: white;
+        transform: scale(1.07);
+    }
+}
+
+.fixedInTop {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+}

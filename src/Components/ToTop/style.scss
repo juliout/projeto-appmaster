@@ -1,0 +1,14 @@
+.toTop {
+    position: fixed;
+    right: 3%;
+    bottom:  20px;
+    width: 7%;
+    height: 7%;
+    fill: #7b1aa16c;
+
+    &:hover {
+        transform: scale(1.03);
+        cursor: pointer;
+        fill: #7b1aa1;
+    }
+}

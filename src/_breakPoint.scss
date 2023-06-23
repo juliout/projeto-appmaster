@@ -1,0 +1,26 @@
+@media (max-width: '620px') {
+    .mainCard {
+        grid-template-columns: 2fr 2fr;
+        grid-column-gap: 0;
+    }
+}
+@media (max-width: '426px') {
+    .mainCard {
+        grid-template-columns: 1fr;
+        grid-column-gap: 0;
+        min-width: 310px;
+        button {
+            margin: 0;
+        }
+    }
+    .card {
+        width: 100%;
+        min-width: 200px;
+        &:hover {
+            transform: scale(0.99);
+        }
+    }
+    header {
+        font-size: 70%;
+    }
+}
