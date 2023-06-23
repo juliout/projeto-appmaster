@@ -6,9 +6,7 @@ import { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import  {FaFilter} from 'react-icons/fa'
-
-import Loader from '../Loader'
-
+import {ColorRing} from 'react-loader-spinner'
 const Main = () => {
 
     const [dataGames, setDataGames] = useState([]);
@@ -31,7 +29,7 @@ const Main = () => {
             const email = 'juliocst1993@gmail.com';
 
             timeoutId = setTimeout(() => {
-            toast.error('O servidor demorou para responder, tente mais tarde');
+                toast.error('O servidor demorou para responder, tente mais tarde');
             }, 5000);
 
             try {
@@ -59,11 +57,13 @@ const Main = () => {
                 error.response &&
                 [500, 502, 503, 504, 507, 508, 509].includes(error.response.status)
             ) {
-                setIsLoad(false)
                 toast.error('O servidor falhou em responder, tente recarregar a página');
+                setIsLoad('Error')
+                
             } else {
-                setIsLoad(false)
                 toast.error('O servidor não conseguirá responder por agora, tente voltar novamente mais tarde');
+                setIsLoad('Error')
+                
             }
             }
         };
@@ -159,7 +159,8 @@ const Main = () => {
                         <button 
                             onClick={()=> optionsView('genre')}
                             className={`filterBtn ${showOpt ?  'baseColor' : ''}`}
-                        > <FaFilter/>Filtros
+                        > 
+                            <FaFilter/>Filtros
                         </button>
                     </div>
                     {showOpt &&
@@ -203,12 +204,31 @@ const Main = () => {
                     })
                 }
                 </div>
-                <ToastContainer />
             </>
         )
-    } else {
+    } else if(isLoad === 'Error'){
         return (
-            <Loader/>
+            <div className="error">
+                <img src="https://cdn-icons-png.flaticon.com/512/5741/5741333.png" alt="error image" />
+                <p>Desculpe Ocorreu algum error, volte outra hora...</p>
+                <ToastContainer 
+                    position='top-center'
+                />
+            </div>
+        )
+    }else{
+        return (
+            <div className='divLoader'>
+                <ColorRing
+                    visible={true}
+                    height="80"
+                    width="80"
+                    ariaLabel="blocks-loading"
+                    wrapperStyle={{margin: '0 auto'}}
+                    colors={['#023e8a', '#3e71b4', '#2174e0', '#253242', '#777f8a']}
+                />
+                <p>Aguarde ...</p>
+            </div>
         )
     }
 }

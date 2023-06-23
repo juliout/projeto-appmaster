@@ -104,3 +104,26 @@
     z-index: 100;
     top: 0;
 }
+.divLoader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 82.6vh;
+    font-size: 30%;
+    color: silver;
+}
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 82.6vh;
+    font-size: 40%;
+    color: silver;
+
+    img {
+        margin-bottom: 10px;
+        width: 100px;
+    }
+}
