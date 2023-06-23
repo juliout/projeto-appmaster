@@ -2,13 +2,16 @@
     .mainCard {
         grid-template-columns: 2fr 2fr;
         grid-column-gap: 0;
+        min-width: 310px;
+    }
+    .card {
+        font-size: 80%;
     }
 }
 @media (max-width: '426px') {
     .mainCard {
         grid-template-columns: 1fr;
         grid-column-gap: 0;
-        min-width: 310px;
         button {
             margin: 0;
         }
