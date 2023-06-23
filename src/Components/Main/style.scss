@@ -14,6 +14,7 @@
     margin-bottom: 20px;
 
 }
+
 .divOpt {
     background-color: rgb(81, 0, 231);
     width: 100%;
@@ -79,7 +80,7 @@
             background-size: 400%;
             -webkit-transition: background 300ms ease-in-out;
             transition: background 300ms ease-in-out;
-            border: 1px #023e8a solid;
+            border: 1px rgb(11, 0, 32) solid;
         }
         button:hover {
             border: 1px solid white;
@@ -90,6 +91,10 @@
         .moreFilter {
             margin: 0 auto;
             margin-top: 20px;
+        }
+        .btnSelect {
+            background-color: white ;
+            color: rgb(81, 0, 231);
         }
     }
 
@@ -128,3 +133,4 @@
         width: 100px;
     }
 }
+

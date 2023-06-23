@@ -20,6 +20,8 @@ const Main = () => {
 
     const [inputSearch, setInputSearch] = useState()
     const [fixedFilter, setFixedFilter] = useState(false)
+    const [selectedBtn, setSelectedBtn] = useState()
+
 
     useEffect(() => {
 
@@ -100,10 +102,16 @@ const Main = () => {
     function optionsView(type) {
         if (type === 'genre') {
             if(!showOpt) setShowOpt(true)
-            else setShowOpt(false)
+            else {
+                setShowOpt(false)
+                setShowData(dataGames)
+            }
         } else if (type === 'filter') {
             if(!showFilters) setShowFilters(true)
-            else setShowFilters(false)
+            else {
+                setShowFilters(false)
+                setShowData(dataGames)
+            }
         }
     }
 
@@ -120,9 +128,11 @@ const Main = () => {
 
     function SearchFilter(type, search) {
         if(type === 'platform') {
+            if(removeSpace(search) === selectedBtn) return setShowData(dataGames)
             const findSearch = dataGames.filter(filter => filter.platform === search)
             setShowData(findSearch)
         } else if (type === 'genre') {
+            if(removeSpace(search) === selectedBtn) return setShowData(dataGames)
             const findSearch = dataGames.filter(filter => filter.genre === search)
             setShowData(findSearch)
         }
@@ -146,6 +156,24 @@ const Main = () => {
             setFixedFilter(false)
         }
         return
+    }
+    const removeSpace = (valor) => {
+        return valor.replace(/[^a-zA-Z0-9]/g, '')
+    }
+    //deixar marcado os buttons que tiverem selecionados no filtro
+    function MarkBtn(e) {
+        const valor = removeSpace(e)
+        if(!selectedBtn) {
+            setSelectedBtn(valor)
+            document.querySelector(`.${valor}`).classList.add('btnSelect')
+        } else if (selectedBtn && selectedBtn !== valor) {
+            document.querySelector(`.${selectedBtn}`).classList.remove('btnSelect')
+            document.querySelector(`.${valor}`).classList.add('btnSelect')
+            setSelectedBtn(valor)
+        } else {
+            document.querySelector(`.${valor}`).classList.remove('btnSelect')
+            setSelectedBtn(false)
+        }
     }
     //simples, caso o stado de carregando estiver falso ele executa o conteudo dos jogos
     //caso gere algum error, ele vai setar 'ERROR' e vai jogar a tela de error com um aviso em tela
@@ -178,8 +206,12 @@ const Main = () => {
                                 optGenre?.map((gen, index) => {
                                     return (
                                         <button 
-                                        key={index} 
-                                        onClick={()=> SearchFilter('genre', gen)}
+                                        key={index}
+                                        onClick={(e)=> {
+                                            SearchFilter('genre', gen)
+                                            MarkBtn(e.target.innerText)
+                                        }}
+                                        className={`${removeSpace(gen)}`}
                                     >{gen}</button>
                                     )
                                 })
@@ -187,7 +219,7 @@ const Main = () => {
                             </div>
                             <button 
                                 onClick={()=> optionsView('filter')}
-                                className='moreFilter'
+                                className={`moreFilter ${showFilters ? 'btnSelect' : ''}`}
                             >   More Filters
                             </button>
                             {showFilters &&
@@ -196,7 +228,11 @@ const Main = () => {
                                         return (
                                             <button 
                                                 key={index}  
-                                                onClick={()=> SearchFilter('platform', filter)}
+                                                onClick={(e)=> {
+                                                    SearchFilter('platform', filter)
+                                                    MarkBtn(e.target.innerText)
+                                                }}
+                                                className={`${removeSpace(filter)}`}
                                             > {filter}
                                             </button>
                                         )
