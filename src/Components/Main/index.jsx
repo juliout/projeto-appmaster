@@ -30,11 +30,13 @@ const Main = () => {
             const cancelToken = axios.CancelToken;
             let cancel;
 
-            //setando uma função para executar o chamado de error
+            //aqui inicia uma funcao onde seto na hora que ele inicia a requisicao, um timer,
+            //caso esse timer seja finalizado e não tenha completado a requisicao ele vai disparar o erro e cancelar a requisicao e mostar na tela,
+            //caso falhe por qualquer outro error, ele mostrara na tela o erro e imagem de error.
+            // 
             const timeoutId = setTimeout(() => {
                cancel('O servidor demorou para responder, tente mais tarde')
             }, 5000);
-
 
             let requisicao = await axios.get(url, {
                 cancelToken: new cancelToken(function executor(c) {
@@ -43,7 +45,7 @@ const Main = () => {
                 headers: {
                     'dev-email-address': email,
                 },
-            }).then(response => {
+            }).then( response => {
                 clearTimeout(timeoutId);
                 setDataGames(response.data);
                 setShowData(response.data)
@@ -54,9 +56,8 @@ const Main = () => {
                 setOptPlataform(Plata)
                 setIsLoad(false)
 
-            }).catch(error => {
-                console.log(error)
-                if(error.code?.code === 'ERR_CANCELED') {
+            }).catch( error => {
+                if (error.code?.code === 'ERR_CANCELED') {
                     toast.error(error.message)
                     clearTimeout(timeoutId);
                     setIsLoad('Error')
@@ -79,7 +80,7 @@ const Main = () => {
 
         fetchData();
     }, []);
-
+    //aqui sessão de funcoes para auxiliar na parte de filtros e buscas,
     function getOptions (type, array){
         const options = []
         array.map(data => {
@@ -127,6 +128,8 @@ const Main = () => {
         }
     }
 
+    //aqui fica uma funcao simples para o menu de filtros e busca fique fixado caso chegue a determinado posicao do scroll, 
+    //para facilitar o usuario possa filtar ou buscar
     window.onscroll = () => {
         const locate = window.scrollY
         let altura = document.body.clientHeight
@@ -138,15 +141,15 @@ const Main = () => {
             }
             document.querySelector('.mainCard').style.marginTop=`${margin}`
             setFixedFilter(true)
-        }
-        else if (locate < 100 && fixedFilter) {
+        } else if (locate < 100 && fixedFilter) {
             document.querySelector('.mainCard').style.marginTop='30px'
             setFixedFilter(false)
         }
         return
     }
-
-
+    //simples, caso o stado de carregando estiver falso ele executa o conteudo dos jogos
+    //caso gere algum error, ele vai setar 'ERROR' e vai jogar a tela de error com um aviso em tela
+    //caso nenhum, uma tela simples de carregamento.
     if (!isLoad) {
         return (
             <>
@@ -174,7 +177,10 @@ const Main = () => {
                             {
                                 optGenre?.map((gen, index) => {
                                     return (
-                                        <button key={index} onClick={()=> SearchFilter('genre', gen)}>{gen}</button>
+                                        <button 
+                                        key={index} 
+                                        onClick={()=> SearchFilter('genre', gen)}
+                                    >{gen}</button>
                                     )
                                 })
                             }
@@ -211,7 +217,7 @@ const Main = () => {
                 </div>
             </>
         )
-    } else if(isLoad === 'Error'){
+    } else if (isLoad === 'Error'){
         return (
             <div className="error">
                 <img src="https://cdn-icons-png.flaticon.com/512/5741/5741333.png" alt="error image" />
@@ -221,7 +227,7 @@ const Main = () => {
                 />
             </div>
         )
-    }else{
+    } else {
         return (
             <div className='divLoader'>
                 <ColorRing
