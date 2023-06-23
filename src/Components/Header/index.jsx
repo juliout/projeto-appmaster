@@ -1,9 +1,10 @@
 import './style.scss'
+import Logo from '../../assets/logo.svg'
 
 const Header = () => {
     return(
         <header>
-            <img src="/public/images/logo.svg" alt="coroaImagem" />
+            <img src={Logo} alt="coroaImagem" />
             <h2>MasterGames</h2>
         </header>
     )
