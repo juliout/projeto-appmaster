@@ -1,4 +1,3 @@
-![image](https://github.com/juliout/projeto-appmaster/assets/81329552/7e11b0a7-0a42-493d-96ee-f6b6b9e8f7de)Projeto para uma vaga de Estagio!! 
 
 ## Requisitos funcionais
 
@@ -26,6 +25,3 @@ A url base da API é 'https://games-test-api-81e9fb0d564a.herokuapp.com/api'
 - 
 - segunda imagem , com os filtros abertos
 - ![image](https://github.com/juliout/projeto-appmaster/assets/81329552/e3b4dbd4-aa02-4cb6-a532-c827276144a0)
-
-
-![image](https://github.com/juliout/projeto-appmaster/assets/81329552/ac9dfc3c-6b37-493a-ab26-d6a04759e5f0)
