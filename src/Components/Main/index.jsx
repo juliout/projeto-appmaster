@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import  {FaFilter} from 'react-icons/fa'
 import {ColorRing} from 'react-loader-spinner'
+
 const Main = () => {
 
     const [dataGames, setDataGames] = useState([]);

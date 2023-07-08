@@ -1,0 +1,73 @@
+.mainRegister {
+    display: flex;
+    align-items: center;
+    min-height: 82.6vh;
+    
+    .boxlogin {
+        margin: 0 auto;
+        width: 40%;
+        max-width: 400px;
+        min-width: 220px;
+        min-height: 400px;
+        padding-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(81, 0, 231);
+    
+        .coroaImagem {
+            width: 70px;
+            transform: translateY(-20px);
+            fill: white;
+        }
+
+        .title {
+            color: white;
+        }
+        .input {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            input {
+                height: 30px;
+                border: none;
+                opacity: 0.8;
+                &:focus{
+                    opacity: 1;
+                }
+                
+            } 
+        }
+        .buttons {
+            width: 80%;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-around;
+            
+            .buttonSubmit {
+                width: 35%;
+                height: 30px;
+                border-radius: 5px;
+                border: none;
+                &:hover {
+                  transform: scaleX(1.2);
+                  cursor: pointer;
+                  color: var(--purple-base);
+                }
+              }
+              .btnlogin {
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                text-decoration: underline;
+                color: silver;
+                font-size: 30%;
+                &:hover {
+                  transform: scale(1.2);
+                }
+              }
+              
+        }
+    }
+}

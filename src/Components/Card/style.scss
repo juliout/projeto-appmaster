@@ -4,93 +4,135 @@
     min-width: 30px;
     max-width: 450px;
     height: auto;
-    max-height: 230px;
+  cursor: pointer;
     overflow: hidden;
     display: block;
     text-decoration: none;
-    border-bottom: 10px rgb(81, 0, 231) solid;
     margin-bottom: 2px;
-
     &:hover{
         transform: scale(1.03);
-        border-bottom: 15px rgb(81, 0, 231) solid;
+        .buttons {
+          .optBtn {
+            display: flex;
+          }
+          .game-name {
+            text-align: right;
+            margin-right: 10px;
+          }
+        }
     }
-    
-}
 
-  .card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-    object-position: top;
-  }
-
-  .card:hover .overlay {
-    display: flex;
-  }
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(133, 133, 133, 0.281);
-    color: white;
-    display: none;
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    -webkit-box-shadow: inset 4px 4px 5px -4px rgba(0,0,0,0.75);
-    -moz-box-shadow: inset 4px 4px 5px -4px rgba(0,0,0,0.75);
-    box-shadow: inset 4px 4px 5px -4px rgba(0,0,0,0.75);
-    
-    li {
+    img {
       width: 100%;
       height: auto;
-      min-height: 20px;
-      max-height: 120px;
-      display: flex;
-      align-items: baseline;
-      margin-top: 2px;
-      font-size: 40%;
-      font-weight: bold;
-      overflow: hidden;
-      p {
-        width: auto;
-        font-weight: normal;
-        font-size: 90%;
-        text-align: center;
-        text-overflow: ellipsis;
-        white-space: wrap;
-        margin-left: 3px;
+      display: block;
+      object-fit: contain;
+      object-position: top;
+    }
 
-      }
-      &:last-child{
-        min-height: 50px;
-        
+    :hover .overlay {
+      display: flex;
+    }
+  
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(133, 133, 133, 0.281);
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-box-shadow: inset 4px 4px 5px -4px rgba(0,0,0,0.75);
+      -moz-box-shadow: inset 4px 4px 5px -4px rgba(0,0,0,0.75);
+      box-shadow: inset 4px 4px 5px -4px rgba(0,0,0,0.75);
+
+      li {
+        width: 100%;
+        height: auto;
+        min-height: 20px;
+        max-height: 120px;
+        display: flex;
+        align-items: baseline;
+        margin-top: 2px;
+        font-size: 30%;
+        font-weight: bold;
+        overflow: hidden;
+        p {
+          width: auto;
+          font-weight: normal;
+          font-size: 90%;
+          text-align: center;
+          text-overflow: ellipsis;
+          white-space: wrap;
+          margin-left: 3px;
+  
+        }
+        &:last-child{
+          min-height: 50px;
+          
+        }
       }
     }
-  }
+  
+   
+    .buttons {
+      display: flex;
+      align-items: center;
+      background-color: var(--purple-base);
+      height: 40px;
+      width: 100%;
+      text-align: right;
+      padding-left: 10px;
+      position: relative;
+      z-index: 999;
+      bottom: 0;
 
-  .card:hover .game-name {
-    display: none;
-  }
+      
+      .game-name {
+        width: 100%;
+        font-size: 30%;
+        color: white;
+        text-align: center;
+        pointer-events: none;
+        margin-left: auto;
+      }
 
-  .game-name {
-    position: absolute;
-    top: 93%;
-    left: 50%;
-    width: 100%;
-    transform: translate(-50%, -50%);
-    font-size: 30%;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    background-color: #03055e73;
-    pointer-events: none;
-  }
+      .optBtn {
+        display: none;
+        width: 30px;
+        height: 30px;
+        margin-left: 3px;
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .linked{
+        opacity: 1;
+      }
+      .unliked {
+        opacity: 0.5;
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .rated {
+        fill: yellow;
+        opacity: 1;
+      }
+      .unrated {
+        fill: yellow;
+        opacity: 0.5;
+      }
+      
+    }
+}
+  
+  

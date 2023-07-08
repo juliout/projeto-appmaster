@@ -1,9 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './default.css'
-import './_breakPoint.scss'
+import React from "react";
+import Routeres from "./Routeres";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./default.scss"
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-<App />
-)
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
+  <StrictMode>
+    <Routeres />
+  </StrictMode>
+);

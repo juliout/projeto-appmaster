@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Peta&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@600&display=swap');
+
 
 html,
 body {
   font-size: 1.6rem;
   font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
+}
+:root {
+  --purple-base: rgb(81, 0, 231);
 }
 
 * {
@@ -24,7 +29,7 @@ a{
   text-decoration: none;
   color: black;
 }
-h2 {
+h2, input, ul {
   font-family: 'Lexend Peta', sans-serif;
 }
 input {
@@ -32,11 +37,19 @@ input {
   outline: none;
   font-size: 45%;
   color: black;
+  padding-left: 10px;
 }
 
-button{
+button, label{
   font-family: 'Bebas Neue', sans-serif;
 }
 ul {
   list-style-type: none;
+}
+label {
+  font-size: 50%;
+  color: white;
+}
+h3 {
+  font-size: 70%;
 }
