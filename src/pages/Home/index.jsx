@@ -10,11 +10,11 @@ import { useEffect } from 'react'
 export default function Home (){
 
   return (
-    <div className='main'>
+    <>
       <Header/>
       <Main/>
       <ToTop/>
       <Footer/>
-    </div>
+    </>
   );
 };

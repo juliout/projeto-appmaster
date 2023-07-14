@@ -1,0 +1,33 @@
+
+.mainStars{
+    display: flex;
+    width: 40%;
+    height: auto;
+    align-items: center;
+    justify-content: space-;
+
+}
+.choiceStars {
+    display: none;
+    width: 40%;
+}
+.star {
+    width: 15%;
+    min-width: 15px;
+    height: auto;
+    fill: silver;
+}
+
+.sSelected {
+    fill: gold;
+}
+
+.show {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.out {
+    display: none;
+}

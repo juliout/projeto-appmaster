@@ -28,6 +28,8 @@ a{
   list-style: none;
   text-decoration: none;
   color: black;
+  font-family: 'Bebas Neue', sans-serif;
+  
 }
 h2, input, ul {
   font-family: 'Lexend Peta', sans-serif;
@@ -52,4 +54,8 @@ label {
 }
 h3 {
   font-size: 70%;
+}
+
+.error-container {
+  font-size: 36%;
 }

@@ -12,15 +12,16 @@ export default function Register(){
 
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    const [user, setUser] = useState()
+    const [nickName, setNickName] = useState()
     const [rePassword, setRepassword] = useState()
 
     const Navigate = useNavigate()
 
     const HandleSubmit = async (e) => {
       e.preventDefault()
-      console.log(email, password)
+      register(email, password, nickName)
     }
+    
     return (
         <div className="Container">
         <Header/>
@@ -38,12 +39,12 @@ export default function Register(){
               />
             </div>
             <div className="input">
-                <label htmlFor="user">User</label>
+                <label htmlFor="NickName">NickName</label>
                 <input 
                   type="text" 
-                  name='user' 
-                  id='user'
-                  onChange={(e)=> setUser(e.target.value)}
+                  name='NickName' 
+                  id='NickName'
+                  onChange={(e)=> setNickName(e.target.value)}
                 />
             </div>
             <div className="input">

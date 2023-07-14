@@ -1,4 +1,22 @@
 @media (max-width: '620px') {
+
+    header {
+        .painel {
+            .options {
+                li {
+                    font-size: 60%;
+                }
+            }
+        }
+    }
+    .divOpt #searchGame {
+        min-width: 240px;
+        font-size: 30%;
+    } 
+    .divOpt .filterBtn {
+        min-width: 40px;
+        font-size: 20%;
+    }
     .mainCard {
         grid-template-columns: 2fr 2fr;
         grid-column-gap: 0;
@@ -9,6 +27,27 @@
     }
 }
 @media (max-width: '426px') {
+    header {
+        .NameLogo {
+            img {
+                width: 50px;
+            }
+            h2{
+                font-size: 50%;
+            }
+        }
+        .painel {
+            margin-right: 3%;
+
+            .triangulocima {
+                margin-right: 20px;
+            }
+            .options {
+                min-width: 50px;
+                margin-right: 60px;
+            }
+        }
+    }
     .mainCard {
         grid-template-columns: 1fr;
         grid-column-gap: 0;

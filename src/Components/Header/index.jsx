@@ -10,10 +10,8 @@ const Header = () => {
 
     const Navigate = useNavigate()
 
-    const {currentUser} = useContext(AuthContext)
+    const {currentUser, logout} = useContext(AuthContext)
     const [painel, setPainel] = useState(false)
-
-    function Lougout(){}
 
     function goTo(name) {
         return Navigate(`/${name}`)
@@ -42,7 +40,7 @@ const Header = () => {
                     {currentUser && (
                         <>
                             <li onClick={(e) => goTo(e.target.innerText)}>Likeds</li>
-                            <li onClick={() => Lougout()}>Logout</li>
+                            <li onClick={() => logout()}>Logout</li>
                         </>
                     )}
                 </ul>

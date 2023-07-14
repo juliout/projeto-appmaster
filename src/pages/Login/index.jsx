@@ -28,16 +28,26 @@ export default function Login () {
     <div className="Container">
       <Header/>
       <main className="mainLogin">
-        <form className="boxlogin">
+        <form className="boxlogin" onSubmit={handleLogin}>
           <img src={logo} alt="coroaImagem" className='coroaImagem'/>
           <h3 className='title'>login</h3>
           <div className="input">
             <label htmlFor="email">E-mail</label>
-            <input type="Email" name='email' id='email'/>
+            <input 
+              type="Email" 
+              name='email' 
+              id='email'
+              onChange={(e)=> setEmail(e.target.value)}
+            />
           </div>
           <div className="input">
             <label htmlFor="password" className='label'>Password</label>
-            <input type="password" name='password' id='password'/>
+            <input 
+              type="password" 
+              name='password' 
+              id='password'
+              onChange={(e)=> setPassword(e.target.value)}
+            />
           </div>
 
           <div className="buttons">
