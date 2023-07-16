@@ -5,6 +5,7 @@ import logo from '../../assets/logo.svg'
 import { useNavigate } from 'react-router-dom';
 import { useState, useContext} from 'react';
 import {AuthContext} from "../../context/AuthContext"
+import { AlertError } from '../../Components/AlertError';
 
 export default function Register(){
 
@@ -19,6 +20,9 @@ export default function Register(){
 
     const HandleSubmit = async (e) => {
       e.preventDefault()
+      if(password !== rePassword) return AlertError("As senhas não são iguais")
+      if(nickName.length < 3) return AlertError("Seu nickName Precisa ter mais de 3 caracteres")
+
       register(email, password, nickName)
     }
     
@@ -36,6 +40,7 @@ export default function Register(){
                 id='email' 
                 name='email'
                 onChange={(e)=> setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="input">
@@ -45,6 +50,7 @@ export default function Register(){
                   name='NickName' 
                   id='NickName'
                   onChange={(e)=> setNickName(e.target.value)}
+                  required
                 />
             </div>
             <div className="input">
@@ -54,6 +60,7 @@ export default function Register(){
                 id='password' 
                 name='password'
                 onChange={(e)=> setPassword(e.target.value)}
+                required
               />
             </div>
             <div className="input">
@@ -63,6 +70,7 @@ export default function Register(){
                 id='repassword' 
                 name='repassword'
                 onChange={(e)=> setRepassword(e.target.value)}
+                required
               />
             </div>
   

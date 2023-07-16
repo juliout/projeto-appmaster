@@ -5,6 +5,7 @@ import Footer from '../../Components/Footer'
 import './style.scss'
 import logo from '../../assets/logo.svg'
 import { useNavigate } from 'react-router-dom';
+import { AlertError } from '../../Components/AlertError';
 
 export default function Login () {
   const [email, setEmail] = useState('');
@@ -13,14 +14,8 @@ export default function Login () {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      await login(email, password);
-      // Após o login bem-sucedido, defina isLoggedIn como true no localStorage
-      localStorage.setItem('isLoggedIn', 'true');
-    } catch (error) {
-      console.log(error);
-      // Tratar o erro de login
-    }
+    await login(email, password);
+
   };
 
   const Navigate = useNavigate()
@@ -39,6 +34,7 @@ export default function Login () {
               name='email' 
               id='email'
               onChange={(e)=> setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="input">
@@ -48,12 +44,13 @@ export default function Login () {
               name='password' 
               id='password'
               onChange={(e)=> setPassword(e.target.value)}
+              required
             />
           </div>
 
           <div className="buttons">
             <button type='submit' className='buttonSubmit'>Login</button>
-            <button type='button' className='forgotPass'> forgot pass</button>
+            <button type='button' className='forgotPass' onClick={()=> AlertError('Desculpe essa parte ainda esta em construção 👨‍🔧')}> forgot pass</button>
           </div>
           
           <button 
