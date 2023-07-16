@@ -33,14 +33,14 @@ const Header = () => {
                 <ul className={`options ${painel ? 'showPainel' : 'showOff'}` } >
                     {!currentUser &&  (
                         <>
-                            <li onClick={(e) => goTo(e.target.innerText)}>Register</li>
-                            <li onClick={(e) => goTo(e.target.innerText)}>Login</li>
+                            <li onClick={(e) => goTo("register")}>Registrar</li>
+                            <li onClick={(e) => goTo("login")}>Login</li>
                         </>
                     )}
                     {currentUser && (
                         <>
-                            <li onClick={(e) => goTo(e.target.innerText)}>Likeds</li>
-                            <li onClick={() => logout()}>Logout</li>
+                            <li onClick={(e) => goTo("favoritos")}>Favoritos</li>
+                            <li onClick={() => logout()}>Sair</li>
                         </>
                     )}
                 </ul>

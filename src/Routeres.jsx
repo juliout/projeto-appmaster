@@ -50,7 +50,7 @@ export default function Routeres() {
                <Route exact path="/login" element={<Login/>}/>
                <Route exact path="/auth" element={<IsAuth><Auth/></IsAuth>} IsAuth/>
                <Route exact path="/register" element={<Register/>}/>
-               <Route exact path="/likeds" element={<IsPrivate><Likeds/></IsPrivate>} IsPrivate/>
+               <Route exact path="/favoritos" element={<IsPrivate><Likeds/></IsPrivate>} IsPrivate/>
                <Route path='*' element={<NotFound/>} />
             </Routes>
          </AuthProvider>
