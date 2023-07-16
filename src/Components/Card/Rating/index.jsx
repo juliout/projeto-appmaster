@@ -34,10 +34,6 @@ export default function Rating({rating, setRated, dados, likedOrRated}) {
                     className={`star ${rating >= 4 ? 'sSelected' : ''}`} 
 
                 />
-                <AiFillStar 
-                    className={`star ${rating >= 5 ? 'sSelected' : ''}`} 
-
-                />
                 
             </div>
             <div className={`choiceStars ${showChoices ? 'show' : 'out'}`}
@@ -84,14 +80,6 @@ export default function Rating({rating, setRated, dados, likedOrRated}) {
                             likedOrRated(userId, gameId, type, 4)
                         }
                     }
-                />
-                <AiFillStar 
-                    className={`star ${choiceRate >= 5 ? 'sSelected' : ''}`} 
-                    onMouseEnter={() => setChoiceRate(5)} 
-                    onClick={() => {
-                        setRated(5)
-                        likedOrRated(userId, gameId, type, 5)
-                    }}
                 />
             </div>
         </>
