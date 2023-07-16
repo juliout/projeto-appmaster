@@ -78,7 +78,6 @@ export const AuthProvider = ({ children }) => {
                 rated: doc.data().rated ? doc.data().rated : ''
               })
             });
-            console.log('rodo auth')
             setDataGamesUser(dados)
             setIsLoad(false)
             

@@ -60,7 +60,6 @@ export default function Likeds(){
                     const findGame = dados.find(fin => `${game.id}` === fin.game_id)
                     if(findGame) games.push(game)
                 })
-                console.log(games)
                 const Genre = getOptions('genre', games)
                 const Plata = getOptions('platform', games)
                 setOptGenre(Genre)
