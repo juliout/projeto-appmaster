@@ -45,7 +45,6 @@ header {
             min-width: 90px;
             position: absolute;
             padding: 5px 0;
-            font-size: 40%;
             border: none;
             top: 35px;
             border-radius: 5px;
@@ -56,7 +55,8 @@ header {
             li {
                 padding: 5px;
                 border-bottom: 1px silver solid;
-                letter-spacing: 1px;
+                letter-spacing: -3px;
+                font-size: 40%;
                 &:last-child{
                     border-bottom:  none;
                 }

@@ -5,6 +5,7 @@ import Footer from '../../Components/Footer'
 import './style.scss'
 import logo from '../../assets/logo.svg'
 import { useNavigate } from 'react-router-dom';
+
 export default function Login () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

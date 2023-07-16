@@ -19,7 +19,8 @@
 }
 
 .sSelected {
-    fill: gold;
+    fill: var(--star);
+    cursor: pointer;
 }
 
 .show {

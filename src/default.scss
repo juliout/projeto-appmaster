@@ -9,15 +9,19 @@ body {
   font-size: 1.6rem;
   font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--backdiv);
 }
 :root {
   --purple-base: rgb(81, 0, 231);
+  --green: rgb(131, 231, 1);
+  --star: rgb(250, 218, 38);
+  --backdiv: rgb(216, 216, 216);
 }
 
 * {
-padding: 0;
-margin: 0;
-box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -58,4 +62,15 @@ h3 {
 
 .error-container {
   font-size: 36%;
+}
+
+.auth {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  .authimg {
+    width: 5%;
+  }
 }

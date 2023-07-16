@@ -37,8 +37,9 @@ export const AuthProvider = ({ children }) => {
     const timeoutId = setTimeout(() => {
         cancel('O servidor demorou para responder, tente mais tarde')
     }, 5000);
-
-    let requisicao = await axios.get(url, {
+    const locatePage = window.location.pathname
+    if(locatePage === '/'){
+      let requisicao = await axios.get(url, {
         cancelToken: new cancelToken(function executor(c) {
             cancel = c;
         }),
@@ -53,8 +54,8 @@ export const AuthProvider = ({ children }) => {
         const Plata = getOptions('platform', response.data)
         setOptGenre(Genre)
         setOptPlataform(Plata)
-
         const user = currentUser ? currentUser : auth.currentUser;
+
         if (user) {
           const uid = user.uid;
           const email = user.email;
@@ -102,7 +103,8 @@ export const AuthProvider = ({ children }) => {
             setIsLoad('Error')
             
         }
-    })      
+    })  
+    }
   };
 
   useEffect(() => {
@@ -128,20 +130,16 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
     .then(async () => {
-      const user = auth.currentUser
-      const uid = user.uid;
-      const email = user.email;
-      const displayName = user.displayName;
-      const photoURL = user.photoURL;
-
-      const userInfo = { uid, email, displayName, photoURL }
-      setCurrentUser(userInfo)
-      AlertSucess('Logado com sucesso!,\nVoltando a tela inicial!')
+      
+      AlertSucess('Logado com sucesso!!')
       return setTimeout(() => {
-        navigate('/')
+        navigate('/auth')
       },2000)
     })
     .catch((error) => {
+      if(error.code === "auth/user-not-found") {
+        return AlertError('Email ou Senha Errado')
+      }
       return AlertError(`${error.code} ${error.message}`)
     });
   };
@@ -167,7 +165,7 @@ export const AuthProvider = ({ children }) => {
       AlertSucess('Você saiu com sucesso, voltando a tela inicial')
       setTimeout(()=> {
         setCurrentUser(false)
-        navigate('/')
+        window.location.href = '/'
       }, 2000)
     }).catch((error) => {
       AlertError(`${error.message} 😰!`)
@@ -184,6 +182,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={{
       currentUser, 
+      setCurrentUser,
       register,
       login,
       logout,
