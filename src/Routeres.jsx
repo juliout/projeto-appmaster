@@ -9,10 +9,19 @@ import Auth from './pages/AuthPage';
 import Register from './pages/Register';
 import Likeds from './pages/Likeds';
 import NotFound from './pages/NotFound';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AlertError } from './Components/AlertError';
 
+import Aos from "aos";
+import 'aos/dist/aos.css'
+
 export default function Routeres() {
+   useEffect(()=> {
+      Aos.init({
+         duration: 1000
+       })
+   }, [])
+
    function IsPrivate({children}) {
       const {authenticate, setDataGames} = useContext(AuthContext)
 

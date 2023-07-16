@@ -75,9 +75,18 @@ const Card = ({game}) => {
           AlertError('Error: ', error.message);
         }
       };
+    const fades = ["fade-up", "fade-down", "flip-left", "flip-right", "flip-up", "zoom-in" ,"zoom-in-down"]
+    const chosefase = () => {
+        if(window.location.pathname === "/"){
+            return ""
+        } else {
+            const num =  Math.floor(Math.random() * 6)
+            return fades[num]
+        }
+    }
 
     return(
-        <div className="card" >
+        <div className="card" data-aos={chosefase()}>
             <img src={game.thumbnail} alt="banner game" />
             <h2 className='game-name'>{game.title}</h2>
             <ul className='overlay'>
