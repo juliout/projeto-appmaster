@@ -59,7 +59,6 @@ export default function Likeds(){
           }
           getLiked()
         if(dataGamesUser && dataGames) {
-            console.log('tarodadndo')
             const games =  []
             dataGames.map(game => {
                 const findGame = dataGamesUser.find(fin => `${game.id}` === fin.game_id)

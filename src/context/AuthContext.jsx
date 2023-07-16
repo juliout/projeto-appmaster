@@ -2,7 +2,7 @@ import { createContext, useState, useEffect, } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { auth, db } from '../firebase'
-import { collection, query, getDocs  } from "firebase/firestore";
+import { collection, query, getDocs, where  } from "firebase/firestore";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut} from "firebase/auth"
 import axios from 'axios';
 
@@ -66,15 +66,16 @@ export const AuthProvider = ({ children }) => {
           setCurrentUser(userInfo)
           
           async function getLiked() {
-            const l = query(collection(db, `${userInfo.uid}`));
-            const querySnapshot = await getDocs(l);
+            
+            const q = query(collection(db, `${userInfo.uid}`), where("liked", "==", true))
+            const querySnapshot = await getDocs(q);
 
             const dados = []
             querySnapshot.forEach((doc) => {
               dados.push({
                 game_id: doc.id,
                 liked: doc.data().liked,
-                rated: doc.data().rated
+                rated: doc.data().rated ? doc.data().rated : ''
               })
             });
 
