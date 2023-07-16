@@ -1,5 +1,7 @@
 ## Requisitos funcionais
 
+-  primeiramente gostaria de agradecer pela oportunidade, e pedir desculpas por alguns erros de criação e mais facil vizualização do projeto e dos componentes; tem algumas coisas que eu poderia melhorar, porem tive alguns problemas pessoais e não pude fazer uma forma mais clara. mas fiz tudo que foi pedido. Obrigado novamente, até...
+
 A url base da API é 'https://games-test-api-81e9fb0d564a.herokuapp.com/api'
 
 -  O projeto deve ser feito usando React ou Next.JS

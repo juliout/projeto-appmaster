@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from 'react'
 import Card from '../../Components/Card'
-//  <div className='mainCard'></div>
+
 import { AuthContext } from '../../context/AuthContext'
 import Header from '../../Components/Header'
 import Footer from "../../Components/Footer"
-import './style.scss'
+import '../../styles/styles.scss'
 import {db} from '../../firebase'
 import { collection, query, where, getDocs  } from "firebase/firestore";
 
@@ -20,9 +20,7 @@ export default function Likeds(){
     const [optPlataform, setOptPlataform] = useState()
     
     const [optGenre, setOptGenre ] = useState()
-    const [isLoad, setIsLoad] = useState(true)
     const [showData, setShowData] = useState([])
-
     const [showOpt, setShowOpt] = useState(false)
     const [showFilters, setShowFilters] = useState(false)
     
@@ -31,49 +29,55 @@ export default function Likeds(){
     const [baseGames, setBaseGames] = useState()
 
     const {
-            dataGamesUser,
+            isLoad, setIsLoad,
+            dataGamesUser,setDataGamesUser,
             dataGames,
-            currentUser, setDataGamesUser,
-            fetchData
+            currentUser,
 
         } = useContext(AuthContext)
     
 
     useEffect(()=> {
+       if(currentUser) {
 
-        async function getLiked() {
-            
-            const q = query(collection(db, `${currentUser.uid}`), where("liked", "==", true))
-            const querySnapshot = await getDocs(q);
+            async function getLiked() {
+                setIsLoad(true)
+                const q = query(collection(db, `${currentUser.uid}`), where("liked", "==", true))
+                const querySnapshot = await getDocs(q);
 
-            const dados = []
-            querySnapshot.forEach((doc) => {
-              dados.push({
-                game_id: doc.id,
-                liked: doc.data().liked,
-                rated: doc.data().rated ? doc.data().rated : ''
-              })
-            });
+                const dados = []
+                querySnapshot.forEach((doc) => {
+                    dados.push({
+                    game_id: doc.id,
+                    liked: doc.data().liked,
+                    rated: doc.data().rated ? doc.data().rated : ''
+                    })
+                });
 
-            setDataGamesUser(dados)
-          }
-          getLiked()
-        if(dataGamesUser && dataGames) {
-            const games =  []
-            dataGames.map(game => {
-                const findGame = dataGamesUser.find(fin => `${game.id}` === fin.game_id)
-                if(findGame) games.push(game)
-            })
-            const Genre = getOptions('genre', games)
-            const Plata = getOptions('platform', games)
-            setOptGenre(Genre)
-            setOptPlataform(Plata)
-            if(games.length > 0 ) {
-                setBaseGames(games)
-                setShowData(games)
+                setDataGamesUser(dados)
+                const games =  []
+                dataGames.map(game => {
+                    const findGame = dados.find(fin => `${game.id}` === fin.game_id)
+                    if(findGame) games.push(game)
+                })
+                console.log(games)
+                const Genre = getOptions('genre', games)
+                const Plata = getOptions('platform', games)
+                setOptGenre(Genre)
+                setOptPlataform(Plata)
+                if(games.length > 0 ) {
+                    setBaseGames(games)
+                    setShowData(games)
+                    setIsLoad(false)
+                }
+
+
+
             }
             
-        }
+            getLiked()
+        
+       }
 
     },[])
 
@@ -189,93 +193,113 @@ export default function Likeds(){
         return setShowData(data)
       }
 
-
-    return (
-        <div className="Container">
-            <Header/>
-            <div className={`divOpt ${fixedFilter ? 'fixedInTop' : ''}`}>
-                    <div className='optFilter'>
-                        <input 
-                            type="search" 
-                            name="searchGame" id="searchGame"
-                            value={inputSearch}
-                            placeholder='Deseja procurar algum game ?'
-                            onChange={(e)=> {
-                                searchGames(e)
-                            }}
-                        />
-                        <button 
-                            onClick={()=> optionsView('genre')}
-                            className={`filterBtn ${showOpt ?  'baseColor' : ''}`}
-                        > 
-                            <FaFilter/>Filtros
-                        </button>
-                        <div>
-                            <GoListOrdered className='orderby'/>
-                            <ul className='orderOpt'>
-                                    <li onClick={() => ordenarPorRatedDecrescente(dataGamesUser)}> 
-                                        <AiOutlineArrowUp/> highest
-                                    </li>
-                                    <li onClick={() => ordenarPorRatedCrescente(dataGamesUser)}>
-                                        <AiOutlineArrowDown/> less
-                                    </li>
-                            </ul>
-                        </div>
-                        
-                    </div>
-                    {showOpt &&
-                        <div className="options">
-                            <div className="GenDiv">
-                            {
-                                optGenre?.map((gen, index) => {
-                                    return (
-                                        <button 
-                                        key={index}
-                                        onClick={(e)=> {
-                                            SearchFilter('genre', gen)
-                                            MarkBtn(e.target.innerText)
-                                        }}
-                                        className={`${removeSpace(gen)}`}
-                                    >{gen}</button>
-                                    )
-                                })
-                            }
-                            </div>
+      if(!isLoad) {
+        return (
+            <div className="Container">
+                <Header/>
+                <div className={`divOpt ${fixedFilter ? 'fixedInTop' : ''}`}>
+                        <div className='optFilter'>
+                            <input 
+                                type="search" 
+                                name="searchGame" id="searchGame"
+                                value={inputSearch}
+                                placeholder='Deseja procurar algum game ?'
+                                onChange={(e)=> {
+                                    searchGames(e)
+                                }}
+                            />
                             <button 
-                                onClick={()=> optionsView('filter')}
-                                className={`moreFilter ${showFilters ? 'btnSelect' : ''}`}
-                            >   More Filters
+                                onClick={()=> optionsView('genre')}
+                                className={`filterBtn ${showOpt ?  'baseColor' : ''}`}
+                            > 
+                                <FaFilter/>Filtros
                             </button>
-                            {showFilters &&
-                                <div className="filters">
-                                    {optPlataform?.map((filter, index) => {
+                            <div>
+                                <GoListOrdered className='orderby'/>
+                                <ul className='orderOpt'>
+                                        <li onClick={() => ordenarPorRatedDecrescente(dataGamesUser)}> 
+                                            <AiOutlineArrowUp/> highest
+                                        </li>
+                                        <li onClick={() => ordenarPorRatedCrescente(dataGamesUser)}>
+                                            <AiOutlineArrowDown/> less
+                                        </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                        {showOpt &&
+                            <div className="options">
+                                <div className="GenDiv">
+                                {
+                                    optGenre?.map((gen, index) => {
                                         return (
                                             <button 
-                                                key={index}  
-                                                onClick={(e)=> {
-                                                    SearchFilter('platform', filter)
-                                                    MarkBtn(e.target.innerText)
-                                                }}
-                                                className={`${removeSpace(filter)}`}
-                                            > {filter}
-                                            </button>
+                                            key={index}
+                                            onClick={(e)=> {
+                                                SearchFilter('genre', gen)
+                                                MarkBtn(e.target.innerText)
+                                            }}
+                                            className={`${removeSpace(gen)}`}
+                                        >{gen}</button>
                                         )
-                                    })}
+                                    })
+                                }
                                 </div>
-                            }   
-                        </div>  
+                                <button 
+                                    onClick={()=> optionsView('filter')}
+                                    className={`moreFilter ${showFilters ? 'btnSelect' : ''}`}
+                                >   More Filters
+                                </button>
+                                {showFilters &&
+                                    <div className="filters">
+                                        {optPlataform?.map((filter, index) => {
+                                            return (
+                                                <button 
+                                                    key={index}  
+                                                    onClick={(e)=> {
+                                                        SearchFilter('platform', filter)
+                                                        MarkBtn(e.target.innerText)
+                                                    }}
+                                                    className={`${removeSpace(filter)}`}
+                                                > {filter}
+                                                </button>
+                                            )
+                                        })}
+                                    </div>
+                                }   
+                            </div>  
+                        }
+                </div>
+                <main className="mainCard">
+                    {
+                        showData.map(game => {
+                            return(
+                                <Card game={game} key={game.id}/> 
+                            )
+                        })
                     }
+                </main> 
+                <Footer/>
             </div>
-            <main className="mainCard">
-                {
-                    showData.map(game => {
-                        return(
-                            <Card game={game} key={game.id}/> 
-                        )
-                    })
-                }
-            </main> 
-            <Footer/>
-        </div>
-    )
+        )
+      } else {
+        return (
+            <>
+                <Header/>
+                <div className='divLoader'>
+                    <ColorRing
+                        visible={true}
+                        height="80"
+                        width="80"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{margin: '0 auto'}}
+                        colors={['#023e8a', '#3e71b4', '#2174e0', '#253242', '#777f8a']}
+                    />
+                    <p>Aguarde ...</p>
+                </div>
+                <Footer/>
+            </>
+        )
+    } 
+    
 }

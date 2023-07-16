@@ -18,23 +18,23 @@ const Card = ({game}) => {
 
     const {currentUser, dataGamesUser, needLogin} = useContext(AuthContext)
     
-    const navigate = useNavigate()
-
     useEffect(()=> {
-        async function findGame() {
-            if(dataGamesUser) {
-                const filterGame = dataGamesUser.find(filt => `${game.id}` === filt.game_id)
-                if(filterGame) {
-                    if(filterGame.liked) {
-                        setLiked(filterGame.liked)
-                    } 
-                    if (filterGame.rated) {
-                        setRated(filterGame.rated)
-                    } 
-                }
-            } 
+        if(currentUser) {
+            async function findGame() {
+                if(dataGamesUser) {
+                    const filterGame = dataGamesUser.find(filt => `${game.id}` === filt.game_id)
+                    if(filterGame) {
+                        if(filterGame.liked) {
+                            setLiked(filterGame.liked)
+                        } 
+                        if (filterGame.rated) {
+                            setRated(filterGame.rated)
+                        } 
+                    }
+                } 
+            }
+            findGame()
         }
-        findGame()
     },[])
 
     const likedOrRated = async (user_uid, game_id, type, value) => {

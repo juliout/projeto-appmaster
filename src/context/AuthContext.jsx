@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
           
           async function getLiked() {
             
-            const q = query(collection(db, `${userInfo.uid}`), where("liked", "==", true))
+            const q = query(collection(db, `${userInfo.uid}`))
             const querySnapshot = await getDocs(q);
 
             const dados = []
@@ -78,9 +78,10 @@ export const AuthProvider = ({ children }) => {
                 rated: doc.data().rated ? doc.data().rated : ''
               })
             });
-
+            console.log('rodo auth')
             setDataGamesUser(dados)
             setIsLoad(false)
+            
           }
           getLiked()
         } else {
