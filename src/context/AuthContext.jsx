@@ -147,17 +147,18 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (email, password, nickname) => {
       await createUserWithEmailAndPassword(auth, email, password).then(async resposta=>{
-        await updateProfile(user, {
+        await updateProfile(resposta.user, {
           displayName: nickname,
         }).then(() => {
-          AlertSucess('Sessão iniciada, voltando a tela de login!')
+          AlertSucess('Conta criada, sessão iniciada')
           return setTimeout(() => {
-            navigate('/login')
+            navigate('/auth')
           },2000)
         })
       })
       .catch(err => {
-        return AlertError(err.message)
+        console.log(err)
+        return AlertError(err)
       })
   };
 

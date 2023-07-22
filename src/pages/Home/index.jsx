@@ -149,7 +149,7 @@ export default function Home (){
 
   if (!isLoad) {
       return (
-          <>
+          <div className='Container'>
             <Header/>
               <div className={`divOpt ${fixedFilter ? 'fixedInTop' : ''}`}>
                   <div className='optFilter'>
@@ -223,7 +223,7 @@ export default function Home (){
               </div>
               <ToTop/>
               <Footer/>
-          </>
+          </div>
       )
   } else if (isLoad === 'Error'){
       return (

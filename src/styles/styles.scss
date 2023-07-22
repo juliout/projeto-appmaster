@@ -2,8 +2,7 @@
 
     max-width: 1100px;
     min-width: 600px;
-    height: auto;
-    min-height: 60vh;
+    min-height: 69.6vh;
     margin:  auto;
 
     display: grid;
@@ -13,6 +12,10 @@
     margin-top: 20px;
     margin-bottom: 20px;
 
+}
+.Container {
+    display: flex;
+    flex-direction: column;
 }
 
 .divOpt {
